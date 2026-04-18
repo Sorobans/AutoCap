@@ -1,6 +1,7 @@
 package net.fabricmc.example.mixin;
 
-import net.minecraft.client.gui.screen.ChatScreen;
+// Added an 's' to screens here:
+import net.minecraft.client.gui.screens.ChatScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -11,7 +12,6 @@ public class ExampleMixin {
     private String capitalizeFirstLetter(String text) {
         if (text == null || text.isEmpty()) return text;
         
-        // The Vibe: Only capitalize if the first character is a lowercase letter
         if (Character.isLowerCase(text.charAt(0))) {
             return Character.toUpperCase(text.charAt(0)) + text.substring(1);
         }
