@@ -1,5 +1,5 @@
 plugins {
-    id 'net.fabricmc.fabric-loom-remap' version "${loom_version}"
+    id 'net.fabricmc.fabric-loom' version "${loom_version}"
     id 'maven-publish'
 }
 
@@ -8,12 +8,13 @@ group = project.maven_group
 
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    
-    // The "Magic" fix for the V1 mapping error
     mappings loom.officialMojangMappings()
     
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+    
+    // This is the "secret sauce" that lets the code see ChatScreen
+    annotationProcessor "net.fabricmc:fabric-loom:${loom_version}"
 }
 
 loom {
@@ -28,7 +29,7 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
-    it.options.release = 21 // Fixed for 1.21.11
+    it.options.release = 21
 }
 
 java {
