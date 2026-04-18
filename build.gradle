@@ -9,8 +9,8 @@ group = project.maven_group
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     
-    // THE FIX: This tells the mod how to read Minecraft names
-mappings "net.fabricmc:yarn:1.21.1+build.1:v2"
+    // This is the stable bridge for 1.21.11
+    mappings "net.fabricmc:intermediary:${project.minecraft_version}"
 
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
