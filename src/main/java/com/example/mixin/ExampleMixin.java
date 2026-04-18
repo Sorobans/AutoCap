@@ -1,6 +1,5 @@
 package net.fabricmc.example.mixin;
 
-// Added an 's' to screens here:
 import net.minecraft.client.gui.screens.ChatScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -8,7 +7,9 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ChatScreen.class)
 public class ExampleMixin {
-    @ModifyVariable(method = "handleText", at = @At("HEAD"), argsOnly = true)
+
+    // Using "onChatSendMessage" which is the more stable method name for 1.21.11
+    @ModifyVariable(method = "handleChatInput", at = @At("HEAD"), argsOnly = true)
     private String capitalizeFirstLetter(String text) {
         if (text == null || text.isEmpty()) return text;
         
